@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:type="Mail"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.1"
+           Version="1.0.0.0" 
+           ProviderName="Cantor Colburn LLP"
+           DefaultLocale="en-US">
+
+  <Id>0f6f6e9d-cc-smartalerts-attachments</Id>
+  <DisplayName DefaultValue="Attachment Size Smart Alert"/>
+  <Description DefaultValue="Warns before send if attachments exceed a configured size."/>
+  <IconUrl DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/assets/icon-80.png"/>
+  <SupportUrl DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/"/>
+
+  <AppDomains>
+    <AppDomain>ccdanc.github.io</AppDomain>
+  </AppDomains>
+
+  <Permissions>ReadItem</Permissions>
+  <Requirements>
+    <Sets><Set Name="Mailbox" MinVersion="1.15"/></Sets>
+  </Requirements>
+  <Hosts><Host Name="Mailbox"/></Hosts>
+
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/src/runtime/commands.html"/>
+  </DefaultSettings>
+
+  <Rule xsi:type="RuleCollection" Mode="Or" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="ReadOrEdit"/>
+  </Rule>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1">
+    <MailApp>
+      <LaunchEvents>
+        <LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler" />
+        <SourceLocation DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/src/runtime/commands.html"/>
+      </LaunchEvents>
+
+      <Resources>
+        <bt:Images>
+          <bt:Image id="icon32" DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/assets/icon-32.png"/>
+          <bt:Image id="icon64" DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/assets/icon-64.png"/>
+          <bt:Image id="icon80" DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/assets/icon-80.png"/>
+        </bt:Images>
+        <bt:Urls>
+          <bt:Url id="commandsHtml" DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/src/runtime/commands.html"/>
+          <bt:Url id="dialogHtml" DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/src/dialog/dialog.html"/>
+        </bt:Urls>
+      </Resources>
+
+      <DisableEntityHighlighting>false</DisableEntityHighlighting>
+    </MailApp>
+  </VersionOverrides>
+</OfficeApp>

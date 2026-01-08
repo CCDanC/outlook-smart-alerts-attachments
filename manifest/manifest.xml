@@ -1,16 +1,20 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:type="Mail"
+           xsi:type="MailApp"
            xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
            xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.1"
-           Version="1.0.0.0" 
+           Version="1.0.0.0"
            ProviderName="Cantor Colburn LLP"
            DefaultLocale="en-US">
 
+  <!-- A valid GUID is required here -->
   <Id>8c3f0d54-0b7f-4d1e-9dbb-3b31df57b8a2</Id>
+
   <DisplayName DefaultValue="Attachment Size Smart Alert"/>
   <Description DefaultValue="Warns before send if attachments exceed a configured size."/>
+
   <IconUrl DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/assets/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/assets/icon-80.png"/>
   <SupportUrl DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/"/>
@@ -19,30 +23,36 @@
     <AppDomain>ccdanc.github.io</AppDomain>
   </AppDomains>
 
-  <Permissions>ReadItem</Permissions>
-
+  <!-- Smart Alerts require Mailbox requirement set >= 1.12; we use 1.15 per docs -->
   <Requirements>
-    <Sets><Set Name="Mailbox" MinVersion="1.15"/></Sets>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.15"/>
+    </Sets>
   </Requirements>
 
   <Hosts>
     <Host Name="Mailbox"/>
   </Hosts>
 
+  <!-- A visible SourceLocation is required; this is your runtime host page -->
   <DefaultSettings>
     <SourceLocation DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/src/runtime/commands.html"/>
   </DefaultSettings>
 
+  <!-- Make add-in available during message compose -->
   <Rule xsi:type="RuleCollection" Mode="Or">
     <Rule xsi:type="ItemIs" ItemType="Message" FormType="ReadOrEdit"/>
   </Rule>
 
+  <!-- Version overrides for event-based activation -->
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1">
     <MailApp>
       <LaunchEvents>
-        <LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler" />
+        <!-- This wires your pre-send handler -->
+        <LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler"/>
         <SourceLocation DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/src/runtime/commands.html"/>
       </LaunchEvents>
+
       <Resources>
         <bt:Images>
           <bt:Image id="icon32" DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/assets/icon-32.png"/>

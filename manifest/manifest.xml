@@ -8,7 +8,7 @@
            ProviderName="Cantor Colburn LLP"
            DefaultLocale="en-US">
 
-  <Id>0f6f6e9d-cc-smartalerts-attachments</Id>
+  <Id>8c3f0d54-0b7f-4d1e-9dbb-3b31df57b8a2</Id>
   <DisplayName DefaultValue="Attachment Size Smart Alert"/>
   <Description DefaultValue="Warns before send if attachments exceed a configured size."/>
   <IconUrl DefaultValue="https://ccdanc.github.io/outlook-smart-alerts-attachments/assets/icon-64.png"/>
